@@ -84,16 +84,26 @@ body {
 }
 
 .upcoming-videos {
+  width: 35%;
   display: flex;
+  margin-top: -200px;
   justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  z-index: 2;
   display: none;
 }
 
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  gap: px;
+}
+
 .upcoming-thumbnail {
-  width: 100px;
-  height: 60px;
+  width: 200px;
+  height: 120px;
   cursor: pointer;
   border-radius: 4px;
   object-fit: cover;

@@ -111,7 +111,7 @@ function showCanvasAnimation(video) {
 }
 
 function startVideoPlayback(video) {
-  canvas.style.display = "none";
+  //   canvas.style.display = "none";
   videoElement.style.display = "block";
 
   videoElement.src = video.src;
@@ -143,18 +143,46 @@ function handleTimeUpdate() {
 
 function showUpcomingVideos(nextVideoId) {
   const nextVideo = videos.find((v) => v.id === nextVideoId);
-  if (!nextVideo) return;
+  const currentVideo = videos.find((v) => v.src === videoElement.src);
+  const previousVideoId = currentVideo
+    ? currentVideo.id - 1 || videos.length
+    : null;
+  const previousVideo = videos.find((v) => v.id === previousVideoId);
 
   upcomingVideos.innerHTML = "";
   upcomingVideos.style.display = "flex";
 
-  const thumbnail = document.createElement("img");
-  thumbnail.className = "upcoming-thumbnail";
-  thumbnail.src = nextVideo.thumbnail;
-  thumbnail.alt = nextVideo.title;
-  thumbnail.title = nextVideo.title;
-  thumbnail.addEventListener("click", () => playVideo(nextVideo.id));
-  upcomingVideos.appendChild(thumbnail);
+  if (previousVideo) {
+    const prevThubcon = document.createElement("div");
+    prevThubcon.className = "thumbnail-container";
+
+    const prevThumbnail = document.createElement("img");
+    prevThubcon.appendChild(prevThumbnail);
+    upcomingVideos.appendChild(prevThubcon);
+
+    prevThumbnail.className = "upcoming-thumbnail";
+    prevThumbnail.src = previousVideo.thumbnail;
+    prevThumbnail.alt = previousVideo.title;
+    prevThumbnail.title = previousVideo.title;
+    prevThumbnail.addEventListener("click", () => playVideo(previousVideo.id));
+    upcomingVideos.appendChild(prevThumbnail);
+  }
+
+  if (nextVideo) {
+    const nextThubcon = document.createElement("div");
+    nextThubcon.className = "thumbnail-container";
+
+    const nextThumbnail = document.createElement("img");
+    nextThubcon.appendChild(nextThumbnail);
+    upcomingVideos.appendChild(nextThubcon);
+
+    nextThumbnail.className = "upcoming-thumbnail";
+    nextThumbnail.src = nextVideo.thumbnail;
+    nextThumbnail.alt = nextVideo.title;
+    nextThumbnail.title = nextVideo.title;
+    nextThumbnail.addEventListener("click", () => playVideo(nextVideo.id));
+    upcomingVideos.appendChild(nextThumbnail);
+  }
 }
 
 window.addEventListener("load", init);
