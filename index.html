@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Player with Playlist</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="video-container">
+        <h2>Video Player</h2>
+        <div class="video-wrapper">
+          <canvas id="videoCanvas"></canvas>
+          <video id="mainVideo" controls></video>
+        </div>
+        <div class="video-description" id="videoDescription"></div>
+        <div class="upcoming-videos" id="upcomingVideos"></div>
+      </div>
+
+      <div class="playlist">
+        <h2>Playlist</h2>
+        <div id="playlistItems"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
